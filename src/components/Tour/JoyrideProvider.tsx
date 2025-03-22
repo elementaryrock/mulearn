@@ -5,7 +5,7 @@ import React, {
     useCallback,
     ReactNode
 } from "react";
-import Joyride, { CallBackProps, Step, STATUS, EVENTS } from "react-joyride";
+import Joyride, { CallBackProps, Step, STATUS } from "react-joyride";
 
 interface JoyrideContextProps {
     startTour: (tourName: string) => void;
@@ -59,25 +59,21 @@ export const JoyrideProvider: React.FC<JoyrideProviderProps> = ({
 
     const handleJoyrideCallback = useCallback(
         (data: CallBackProps) => {
-            const { action, index, status, type, lifecycle } = data;
-
-            console.log(
-                `Joyride Event: ${type}, Status: ${status}, Index: ${index}, Action: ${action}, Lifecycle: ${lifecycle}`
-            );
+            const { action, index, status, type } = data;
 
             if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 // Tour is complete or skipped
                 setRun(false);
                 setStepIndex(0);
-            } else if (type === EVENTS.STEP_AFTER) {
-                // Move to the next step after current step is done
+            } else if (type === "step:after") {
+                // Move to the next step
                 if (action === "next") {
-                    setStepIndex(prevIndex => prevIndex + 1);
+                    setStepIndex(index + 1);
                 } else if (action === "prev") {
                     // Move to the previous step
-                    setStepIndex(prevIndex => Math.max(0, prevIndex - 1));
+                    setStepIndex(Math.max(0, index - 1));
                 }
-            } else if (type === EVENTS.TARGET_NOT_FOUND) {
+            } else if (type === "error:target_not_found") {
                 // Handle case where target element is not found
                 console.warn(`Tour target not found at step ${index}`);
 
@@ -131,12 +127,8 @@ export const JoyrideProvider: React.FC<JoyrideProviderProps> = ({
                         backgroundColor: "transparent"
                     }
                 }}
-                disableOverlayClose={false}
+                disableOverlayClose
                 spotlightClicks
-                scrollOffset={120}
-                locale={{
-                    last: "Finish"
-                }}
                 floaterProps={{
                     disableAnimation: false,
                     styles: {
@@ -145,7 +137,6 @@ export const JoyrideProvider: React.FC<JoyrideProviderProps> = ({
                         }
                     }
                 }}
-                debug
             />
         </JoyrideContext.Provider>
     );

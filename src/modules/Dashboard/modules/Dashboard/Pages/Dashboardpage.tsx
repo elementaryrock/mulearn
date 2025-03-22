@@ -199,38 +199,27 @@ const DashboardPage = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <motion.section
-                        className={`${styles.welcomeSection} welcomeSection`}
+                        className={styles.welcomeSection}
                         data-tour="dashboard-welcome"
                         initial={{ scale: 0.9 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div
-                            className={styles.welcomeText}
-                            data-tour="welcome-section"
-                        >
-                            <h1
-                                className={`${styles.welcomeTitle} welcomeTitle`}
-                            >
+                        <div className={styles.welcomeText}>
+                            <h1 className={styles.welcomeTitle}>
                                 {storedUserInfo.exist_in_guild
                                     ? "Welcome"
                                     : "Welcome"}{" "}
                                 <span>{userName}</span> 👋
                             </h1>
-                            <p
-                                className={`${styles.welcomeMessage} welcomeMessage`}
-                            >
+                            <p className={styles.welcomeMessage}>
                                 This dashboard is being updated. Expect
                                 improvements and possible bugs. Thanks for your
                                 patience!
                             </p>
-                            <div
-                                className={styles.buttons}
-                                data-tour="dashboard-actions"
-                            >
+                            <div className={styles.buttons}>
                                 <motion.button
-                                    className={`${styles.button} button`}
-                                    id="start-learning-button"
+                                    className={styles.button}
                                     data-tour="start-learning"
                                     onClick={handleStartLearning}
                                     whileHover={{ scale: 1.1 }}

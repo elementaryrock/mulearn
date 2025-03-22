@@ -26,55 +26,53 @@ const TourGuide: React.FC<TourGuideProps> = ({
                 spotlightClicks: true
             },
             {
-                target: '[data-tour="mode-selector"]',
+                target: 'div[data-tour="mode-selector"]', // We'll add this data attribute to the mode selector
                 content:
                     "Switch between different modes based on your interests and skills.",
                 disableBeacon: true,
                 spotlightClicks: true
             },
             {
-                target: '[data-tour="progress-bar"]',
+                target: 'div[data-tour="progress-bar"]', // We'll add this data attribute to the progress bar
                 content:
-                    "This is your progress bar. It shows your current level and points.",
+                    "This is your progress bar. It shows your current level and achievements.",
                 disableBeacon: true,
                 spotlightClicks: true
             },
             {
-                target: '[data-tour="welcome-section"]',
+                target: 'div[data-tour="dashboard-welcome"]', // We'll add this data attribute to the welcome section
                 content:
                     "Welcome to your dashboard! This is your personalized home where you can track your progress and access learning resources.",
                 disableBeacon: true,
-                spotlightClicks: true,
-                placement: "bottom"
+                spotlightClicks: true
             },
             {
-                target: '[data-tour="start-learning"]',
+                target: 'button[data-tour="start-learning"]', // We'll add this data attribute to the start learning button
                 content:
                     "Click here to start your learning journey with µLearn.",
                 disableBeacon: true,
-                spotlightClicks: true,
-                placement: "bottom"
+                spotlightClicks: true
             }
         ];
 
         // Define learning circle tour steps
         const learningCircleTourSteps: Step[] = [
             {
-                target: '[data-tour="learning-circle-header"]',
+                target: 'div[data-tour="learning-circle-header"]',
                 content:
                     "Welcome to Learning Circles! Here you can find and join peer learning groups.",
                 disableBeacon: true,
                 spotlightClicks: true
             },
             {
-                target: '[data-tour="learning-circle-list"]',
+                target: 'div[data-tour="learning-circle-list"]',
                 content:
                     "This is the list of available learning circles. Join one that matches your interests!",
                 disableBeacon: true,
                 spotlightClicks: true
             },
             {
-                target: '[data-tour="create-circle-button"]',
+                target: 'button[data-tour="create-circle-button"]',
                 content:
                     "You can also create your own learning circle to lead a group of peers.",
                 disableBeacon: true,
